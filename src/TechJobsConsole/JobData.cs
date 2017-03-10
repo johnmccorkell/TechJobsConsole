@@ -38,6 +38,46 @@ namespace TechJobsConsole
             return values;
         }
 
+
+
+
+        //enables search of jobs
+        public static List<Dictionary<string, string>> findByValue(string searchTerm)
+
+        {
+            LoadData();
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+
+            {     
+                foreach (string key in row.Keys)
+
+                {
+                    string aValue = row[key];
+
+                    searchTerm = searchTerm.ToLower();
+                                           
+                    if (aValue.ToLower().Contains(searchTerm))
+                    //if (System.StringComparer.CurrentCultureIgnoreCase.Equals(aValue, searchTerm))
+                    //if ((aValue).IndexOf(searchTerm, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        jobs.Add(row);
+                        break;
+                    }
+                    
+                    
+
+                }
+
+                }
+                return jobs;
+             }
+
+
+
+
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
         {
             // load data, if not already loaded
